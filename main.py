@@ -1,19 +1,14 @@
-from bs4 import BeautifulSoup
 import requests
+from lxml import html
 
-URL = 'https://agostinholeiloes.com.br/'  # substitua pela URL desejada
+URL = 'https://agostinholeiloes.com.br/'
 response = requests.get(URL)
 
-# Criar um objeto BeautifulSoup
-soup = BeautifulSoup(response.text, 'html.parser')
 
-# Encontrar todas as tags 'b'
-tags_b = soup.find('b')
+tree = html.fromstring(response.content)
 
-tags_h4 = soup.find('h6', class_='card-title m-0').text
+resultado = tree.xpath('/html/body/div[1]/div[3]/div[2]/div[5]/div/div/div/a/p[1]/small')
 
-tags_p = soup.find('p', class_= 'mb-0').text;
 
-print(f"o valor de avaliação é de: {tags_b}");
-print(tags_h4)
-print(tags_p)
+for r in resultado:
+    print(r.text)
