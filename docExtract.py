@@ -15,5 +15,3 @@ def extraiLink():
         url_documento = url_documento_rel
 
     print(f"o link do documento é: {url_documento}") 
-    return
-extraiLink()
