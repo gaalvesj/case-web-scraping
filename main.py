@@ -1,5 +1,7 @@
 import requests
 from lxml import html
+from imovePage import extrairEndereco
+from docExtract import extraiLink
 
 URL = 'https://agostinholeiloes.com.br/'
 response = requests.get(URL)
@@ -24,14 +26,5 @@ for i in dataPrimeira:
 for i in valorSegundoLance:
     print(f"o valor do segundo leilão é: {i.text}")
 
-
-def imovelPage():
-    URL = 'https://agostinholeiloes.com.br/item/1435/detalhes?page=1'
-    response = requests.get(URL)
-    tree = html.fromstring(response.content)
-
-    enderecoImovel = tree.xpath('/html/body/div[1]/div[2]/div[4]/div[2]/div/p')
-    for i in enderecoImovel:
-        print(f"o endereço do imovel é: {i.text}")
-        return
-imovelPage()
+extrairEndereco()
+extraiLink()
